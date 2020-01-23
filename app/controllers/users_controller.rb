@@ -43,6 +43,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #.page(params[:page])はページネイションの表示に必須
     @micropost = @user.favorite_microposts.page(params[:page])
+    #application_controllerのcountsを呼び出し
+    counts(@user)
   end
   
   private
