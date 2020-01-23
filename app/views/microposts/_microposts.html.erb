@@ -1,3 +1,4 @@
+<!--users/show.html.erbでmicropostsを定義している-->
 <ul class="list-unstyled">
   <% microposts.each do |micropost| %>
     <li class="media mb-3">
@@ -13,9 +14,14 @@
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
+          <!--each do によって|micropost|内にmicropostsが一つずつ
+          取り出されて格納されている。その変数micropostを
+          favorites/favorite_buttonで使えるように定義してる。-->
+          <%= render 'favorites/favorite_button', micropost: micropost %>
         </div>
       </div>
     </li>
   <% end %>
+  <!--.page(params[:page])の記述がなければページネーションは使えない-->
   <%= paginate microposts %>
 </ul>

@@ -1,3 +1,4 @@
+<!--変数についてはコントローラのshowを参照-->
 <div class="row">
   <aside class="col-sm-4">
     <div class="card">
@@ -15,6 +16,12 @@
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Microposts  <span class="badge badge-secondary"><%= @count_microposts %></span></a></li>
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">Followers  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+      <!--routes.rbでlikesのルーティングを追加
+      controllerでlikesの処理を記述
+      生成されたlikes_user_pathに飛ぶと
+      controllerのlikesの処理を通ってview
+      @count_favoriteはapplication_controllerで定義-->
+      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Favorites  <span class="badge badge-secondary"><%= @count_favorites %></span></a></li>
     </ul>
     <%= render 'microposts/microposts', microposts: @microposts %>
   </div>
